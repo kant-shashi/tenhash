@@ -1,8 +1,10 @@
 from flask import Flask
 from datetime import datetime
-app = Flask(__name__)
+import constants
 
-@app.route('/')
+tenhash = Flask(constants.TENHASH)
+
+@tenhash.route('/')
 def homepage():
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
 
@@ -13,5 +15,12 @@ def homepage():
     <img src="https://graph.facebook.com/shashikant.0?fields=picture.width(720).height(720) ">
     """.format(time=the_time)
 
+
+@tenhash.route('/testing')
+def testing():
+    return "testing time this"
+
+
+
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+    tenhash.run(debug=True, use_reloader=True)
