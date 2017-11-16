@@ -1,0 +1,3 @@
+graft static
+graft template
+include schema.sql
