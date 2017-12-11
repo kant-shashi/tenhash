@@ -1,6 +1,6 @@
 import sqlite3
 from datetime import datetime
-from flask import Flask
+from flask import Flask, redirect
 import constants
 
 
@@ -12,17 +12,17 @@ tenhash.config.from_pyfile(constants.TENHASH_SETTINGS, silent=False)
 @tenhash.route('/')
 def homepage():
     """This is to render the homepage"""
+    return redirect("http://posts.tenhash.com", code=302)
+
+
+@tenhash.route('/spa')
+def single_page_application():
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
     return """
-    <h1>Hello heroku</h1>
+    <h1>Hello Tenhash users</h1></br>
+    <h2>Welcome to First Single Page Application</h2>
     <p>It is currently {time}.</p>  
     """.format(time=the_time)
-
-
-@tenhash.route('/testing')
-def testing():
-    """ testing bed """
-    return "testing time this"
 
 
 def connect_db():
